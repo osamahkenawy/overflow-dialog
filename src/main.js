@@ -1,5 +1,14 @@
-import { createApp } from 'vue'
-import './style.css'
-import App from './App.vue'
+import { createApp } from 'vue';
+import App from './App.vue';
+import vuetify from './plugins/vuetify';
 
-createApp(App).mount('#app')
+// Import your component globally
+import SubSidebar from './components/sidebars/SubSidebar.vue';
+
+const app = createApp(App);
+
+// Globally register the component
+app.component('SubSidebar', SubSidebar);
+
+app.use(vuetify); // Register Vuetify if you're using it
+app.mount('#app');
