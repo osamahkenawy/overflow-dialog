@@ -1,6 +1,6 @@
 import { createApp } from 'vue';
 import App from './App.vue';
-import vuetify from './plugins/vuetify';
+import vuetify from './plugins/vuetify'; // Import your Vuetify setup
 
 // Import your component globally
 import SubSidebar from './components/sidebars/SubSidebar.vue';
