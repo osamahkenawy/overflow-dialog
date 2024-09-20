@@ -6,6 +6,9 @@ defineProps({
 </script>
 
 <template>
+   <v-btn color="customColor2">Primary Button</v-btn>
+
+   
   <SubSidebar>
     <p>Content inside the sidebar!</p>
   </SubSidebar>
