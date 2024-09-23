@@ -1,49 +1,41 @@
 <template>
-    <div>
-      <h2>Add Location</h2>
-      <div id="add-map" style="height: 500px;"></div>
-    </div>
+    <div id="add-map" class="full-map"></div>
   </template>
   
   <script>
-  import { ref, onMounted } from 'vue';
+  import { onMounted } from 'vue';
   import L from 'leaflet';
   
   export default {
     name: 'LocationMap',
     setup() {
-      const markers = ref([]);
-  
       onMounted(() => {
-        // Initialize the map and set the view to a given place and zoom level
-        const map = L.map('add-map').setView([51.505, -0.09], 13);
+        // Ensure the map is only initialized once
+        if (!L.DomUtil.get('add-map')._leaflet_id) {
+          // Initialize the map
+          const map = L.map('add-map').setView([51.505, -0.09], 13);
   
-        // Set up the tile layer from OpenStreetMap
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          maxZoom: 19,
-        }).addTo(map);
+          // Set up the tile layer from OpenStreetMap
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+          }).addTo(map);
   
-        // Event listener for map clicks to add markers
-        map.on('click', function (e) {
-          const marker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(map);
-          markers.value.push({
-            lat: e.latlng.lat,
-            lng: e.latlng.lng,
+          // Optional: You can add event listeners to the map if needed
+          map.on('click', function (e) {
+            const marker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(map);
           });
-        });
+        }
       });
   
-      return {
-        markers,
-      };
+      return {};
     },
   };
   </script>
   
   <style scoped>
-  #add-map {
-    height: 500px;
+  .full-map {
     width: 100%;
+    height: 100%;
   }
   </style>
   

@@ -1,5 +1,5 @@
 <template>
-  <div class="sidepanel" :style="{marginLeft: panelMargin, backgroundColor: 'rgb(var(--v-theme-primary)) !important' }">
+  <div class="sidebar-overlay" :style="{ marginLeft: panelMargin, backgroundColor: 'rgb(var(--v-theme-primary)) !important' }">
     <!-- Slot for passing content from parent -->
     <slot></slot>
     <div class="circle" @click="togglePanel">
@@ -32,7 +32,7 @@ export default {
 
     // Function to get the panel width dynamically
     const getPanelWidth = () => {
-      return document.querySelector('.sidepanel').offsetWidth;
+      return document.querySelector('.sidebar-overlay').offsetWidth;
     };
 
     // Use onMounted to ensure DOM is fully loaded before calculating width
@@ -49,38 +49,17 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-body {
-  margin: 0;
-  padding: 0;
-}
-
-.sidepanel {
-  position: relative;
+<style scoped>
+.sidebar-overlay {
+  position: absolute; /* Ensure the sidebar is positioned above the content */
+  top: 0;
+  left: 0;
+  width: 300px; /* Adjust the sidebar width as needed */
   height: 100vh;
-  background-color: var(--v-theme-primary); /* Use Vuetify primary color */
-  width: 20%;
-  min-width: 100px;
-  margin-left: 0;
-  z-index: 2;
-  font-size: 1.5em;
-  line-height: 1.5em;
-  color: #333;
-  font-family: Helvetica;
-  text-align: center;
+  z-index: 9999; /* Ensure it stays above the map and other content */
+  background-color: rgba(255, 255, 255, 0.9); /* Optional background */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3); /* Optional shadow for better visibility */
   transition: all 0.5s ease;
-}
-
-@media (max-width: 768px) {
-  .sidepanel {
-    width: 30%;
-  }
-}
-
-@media (max-width: 480px) {
-  .sidepanel {
-    width: 40%;
-  }
 }
 
 .circle {
@@ -96,18 +75,24 @@ body {
   align-items: center;
   top: calc(50% - 22px);
   left: calc(100% - 22px);
-  z-index: 3;
+  z-index: 10000; /* Ensure the button is above the sidebar */
   cursor: pointer;
   transition: left 0.5s ease;
 }
 
 @media (max-width: 768px) {
+  .sidebar-overlay {
+    width: 30%; /* Adjust width for smaller screens */
+  }
+
   .circle {
     top: 10px;
   }
 }
 
-.hide {
-  display: none;
+@media (max-width: 480px) {
+  .sidebar-overlay {
+    width: 40%; /* Adjust width for very small screens */
+  }
 }
 </style>
