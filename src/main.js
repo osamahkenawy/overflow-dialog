@@ -5,10 +5,12 @@ import vuetify from './plugins/vuetify'; // Import your Vuetify setup
 // Router
 import router from './router';
 
-// Import your component globally
+// Components
 import SubSidebar from './components/sidebars/SubSidebar.vue';
-import "@mdi/font/css/materialdesignicons.css";
-// import 'vuetify/styles'
+
+// Styles
+import "@mdi/font/css/materialdesignicons.css";  // Material Design CSS For (Icons)
+import 'leaflet/dist/leaflet.css';  // Leaflet CSS
 
 const app = createApp(App);
 app.use(router);
