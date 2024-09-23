@@ -1,9 +1,9 @@
 <template>
-  <div class="sidebar-overlay" :style="{ marginLeft: panelMargin, backgroundColor: 'rgb(var(--v-theme-primary)) !important' }">
+  <div class="sidebar-overlay" :style="{ marginLeft: panelMargin, backgroundColor: 'rgb(var(--v-theme-white)) !important' }">
     <!-- Slot for passing content from parent -->
     <slot></slot>
     <div class="circle" @click="togglePanel">
-      <v-btn elevation="2" color="secondary" icon fab dark small bottom left>
+      <v-btn elevation="2" color="primary" icon fab dark small bottom left>
         <v-icon medium v-if="!isCollapsed">mdi-chevron-left</v-icon>
         <v-icon medium v-if="isCollapsed">mdi-chevron-right</v-icon>
       </v-btn>
@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted } from 'vue'; 
 
 export default {
   name: 'SubSidebar',
@@ -54,7 +54,7 @@ export default {
   position: absolute; /* Ensure the sidebar is positioned above the content */
   top: 0;
   left: 0;
-  width: 300px; /* Adjust the sidebar width as needed */
+  width: 400px; /* Adjust the sidebar width as needed */
   height: 100vh;
   z-index: 9999; /* Ensure it stays above the map and other content */
   background-color: rgba(255, 255, 255, 0.9); /* Optional background */

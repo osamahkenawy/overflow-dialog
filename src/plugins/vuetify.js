@@ -10,9 +10,13 @@ const customTheme = {
     primary: '#244066', // primary color
     secondary: '#F2421B',
     third: '#F3F8FF', // third custom color
+    white: '#FFFF'
   },
   variables: {
-    primary: '#244066'
+    primary: '#244066',
+    secondary: '#F2421B',
+    third: '#F3F8FF', // third custom color
+     white: '#FFFF'
   },
   
 
