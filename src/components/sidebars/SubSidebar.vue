@@ -3,7 +3,7 @@
     <!-- Slot for passing content from parent -->
     <slot></slot>
     <div class="circle" @click="togglePanel">
-      <v-btn elevation="2" color="primary" icon fab dark small bottom left>
+      <v-btn elevation="2" color="secondary" icon fab dark small bottom left>
         <v-icon medium v-if="!isCollapsed">mdi-chevron-left</v-icon>
         <v-icon medium v-if="isCollapsed">mdi-chevron-right</v-icon>
       </v-btn>
