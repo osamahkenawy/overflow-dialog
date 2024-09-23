@@ -1,15 +1,15 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-</script>
+
 
 <template>
-  <HelloWorld msg="Vite + Vue" />
+  <v-app>
+    <router-view />
+  </v-app>
 </template>
 
 <style scoped>
 .logo {
   height: 6em;
-  padding: 1.5em;
+  padding: 1.5em; 
   will-change: filter;
   transition: filter 300ms;
 }

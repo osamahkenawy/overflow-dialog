@@ -4,7 +4,7 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+  color: rgba(0, 0, 0, 0.87);
   background-color: #242424;
 
   font-synthesis: none;
@@ -13,6 +13,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.v-application {
+  background-color: #F7F8FA !important;
+}
 a {
   font-weight: 500;
   color: #646cff;
