@@ -1,5 +1,6 @@
 <template>
-  <div class="sidebar-overlay" :style="{ marginLeft: panelMargin, backgroundColor: 'rgb(var(--v-theme-white)) !important' }">
+  <div class="sidebar-overlay" 
+       :style="{ marginLeft: panelMargin, backgroundColor: background }">
     <!-- Slot for passing content from parent -->
     <slot></slot>
     <div class="circle" @click="togglePanel">
@@ -16,7 +17,13 @@ import { ref, onMounted } from 'vue';
 
 export default {
   name: 'SubSidebar',
-  setup() {
+  props: {
+    background: {
+      type: String,
+      default: null, // Fallback to null if no background color is provided
+    },
+  },
+  setup(props) {
     const isCollapsed = ref(false);
     const panelMargin = ref('0px');
 
@@ -57,7 +64,7 @@ export default {
   width: 400px; /* Adjust the sidebar width as needed */
   height: 100vh;
   z-index: 9999; /* Ensure it stays above the map and other content */
-  background-color: rgba(255, 255, 255, 0.9); /* Optional background */
+  background-color: rgba(255, 255, 255, 0.6); /* Optional background */
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3); /* Optional shadow for better visibility */
   transition: all 0.5s ease;
 }

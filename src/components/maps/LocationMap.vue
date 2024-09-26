@@ -1,6 +1,6 @@
 <template>
   <div>
-      <div class="full-map" id="map"></div>
+    <div class="full-map" id="map"></div>
   </div>
 </template>
 
@@ -68,6 +68,13 @@ onMounted(() => {
     initialMap.value.invalidateSize();
   };
   window.addEventListener('resize', handleResize);
+
+  // Listen for the address input event
+  document.addEventListener('move-map', (event) => {
+    const { lat, lon } = event.detail;
+    initialMap.value.setView([lat, lon], mapConfig.zoom);
+    // L.marker([lat, lon], { icon: myIcon }).addTo(initialMap.value);
+  });
 
   // Cleanup on component unmount
   onUnmounted(() => {
