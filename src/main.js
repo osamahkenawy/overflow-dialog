@@ -8,6 +8,9 @@ import router from './router';
 // I18n
 import { createI18n } from 'vue-i18n';
 
+// Import messages from the locales/index.js file
+import messages from './locales';
+
 // Components
 import SubSidebar from './components/sidebars/SubSidebar.vue';
 import LocationMap from './components/maps/LocationMap.vue';
@@ -16,23 +19,12 @@ import LocationMap from './components/maps/LocationMap.vue';
 import "@mdi/font/css/materialdesignicons.css";  // Material Design CSS For (Icons)
 import 'leaflet/dist/leaflet.css';  // Leaflet CSS
 
-// Messages for internationalization
-const messages = {
-  en: {
-    COLLAPSE_SIDEBAR: 'Collapse Sidebar',
-    CLOSE: 'Close',
-    INFO: 'Info',
-    TRIP_DETAILS: 'Trip Details',
-  },
-  // Add more languages as needed
-};
-
 // Set up Vue I18n
 const i18n = createI18n({
   legacy: false, // Disable legacy mode to use the Composition API
   locale: 'en', // Default locale
   fallbackLocale: 'en', // Fallback locale in case the requested one is not available
-  messages, // Locale messages
+  messages, // Locale messages imported from locales/index.js
 });
 
 const app = createApp(App);
