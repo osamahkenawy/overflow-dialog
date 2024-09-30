@@ -5,20 +5,50 @@ import vuetify from './plugins/vuetify'; // Import your Vuetify setup
 // Router
 import router from './router';
 
+// I18n
+import { createI18n } from 'vue-i18n';
+
 // Components
 import SubSidebar from './components/sidebars/SubSidebar.vue';
-// Maps
 import LocationMap from './components/maps/LocationMap.vue';
 
 // Styles
 import "@mdi/font/css/materialdesignicons.css";  // Material Design CSS For (Icons)
 import 'leaflet/dist/leaflet.css';  // Leaflet CSS
 
+// Messages for internationalization
+const messages = {
+  en: {
+    COLLAPSE_SIDEBAR: 'Collapse Sidebar',
+    CLOSE: 'Close',
+    INFO: 'Info',
+    TRIP_DETAILS: 'Trip Details',
+  },
+  // Add more languages as needed
+};
+
+// Set up Vue I18n
+const i18n = createI18n({
+  legacy: false, // Disable legacy mode to use the Composition API
+  locale: 'en', // Default locale
+  fallbackLocale: 'en', // Fallback locale in case the requested one is not available
+  messages, // Locale messages
+});
+
 const app = createApp(App);
+
+// Use Router
 app.use(router);
-// Globally register the component
+
+// Use Vuetify
+app.use(vuetify);
+
+// Use I18n
+app.use(i18n);
+
+// Globally register components
 app.component('SubSidebar', SubSidebar);
 app.component('location-map', LocationMap);
 
-app.use(vuetify); // Register Vuetify if you're using it
+// Mount the app
 app.mount('#app');

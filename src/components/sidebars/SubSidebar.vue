@@ -1,56 +1,48 @@
 <template>
-  <div class="sidebar-overlay" 
-       :style="{ marginLeft: panelMargin, backgroundColor: background }">
-    <!-- Slot for passing content from parent -->
+  <v-navigation-drawer
+    v-model="visible"
+    app
+    width="400"
+    right
+    temporary
+    class="sidebar-overlay"
+  >
+    <!-- Slot for passing the content of the sidebar -->
     <slot></slot>
-    <div class="circle" @click="togglePanel">
-      <v-btn elevation="2" color="secondary" icon fab dark small bottom left>
-        <v-icon medium v-if="!isCollapsed">mdi-chevron-left</v-icon>
-        <v-icon medium v-if="isCollapsed">mdi-chevron-right</v-icon>
+
+    <!-- Toggle Sidebar Button -->
+    <div class="circle" @click="toggleSidebar">
+      <v-btn elevation="2" color="secondary" icon fab dark small>
+        <v-icon v-if="visible">mdi-chevron-right</v-icon>
+        <v-icon v-else>mdi-chevron-left</v-icon>
       </v-btn>
     </div>
-  </div>
+  </v-navigation-drawer>
 </template>
 
 <script>
-import { ref, onMounted } from 'vue'; 
+import { ref } from 'vue';
 
 export default {
   name: 'SubSidebar',
   props: {
-    background: {
-      type: String,
-      default: null, // Fallback to null if no background color is provided
+    modelValue: {
+      type: Boolean,
+      required: true,
     },
   },
-  setup(props) {
-    const isCollapsed = ref(false);
-    const panelMargin = ref('0px');
+  emits: ['update:modelValue'],
+  setup(props, { emit }) {
+    const visible = ref(props.modelValue);
 
-    // Function to toggle panel collapse/expand
-    const togglePanel = () => {
-      if (isCollapsed.value) {
-        panelMargin.value = '0px'; // Expand the panel
-      } else {
-        panelMargin.value = `-${getPanelWidth()}px`; // Collapse the panel
-      }
-      isCollapsed.value = !isCollapsed.value;
+    const toggleSidebar = () => {
+      visible.value = !visible.value;
+      emit('update:modelValue', visible.value);
     };
-
-    // Function to get the panel width dynamically
-    const getPanelWidth = () => {
-      return document.querySelector('.sidebar-overlay').offsetWidth;
-    };
-
-    // Use onMounted to ensure DOM is fully loaded before calculating width
-    onMounted(() => {
-      panelMargin.value = '0px'; // Start with an expanded sidebar
-    });
 
     return {
-      isCollapsed,
-      panelMargin,
-      togglePanel,
+      visible,
+      toggleSidebar,
     };
   },
 };
@@ -60,11 +52,11 @@ export default {
 .sidebar-overlay {
   position: absolute; /* Ensure the sidebar is positioned above the content */
   top: 0;
-  left: 0;
+  right: 0;
   width: 400px; /* Adjust the sidebar width as needed */
   height: 100vh;
   z-index: 9999; /* Ensure it stays above the map and other content */
-  background-color: rgba(255, 255, 255, 0.6); /* Optional background */
+  background-color: rgba(255, 255, 255); /* Optional background */
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3); /* Optional shadow for better visibility */
   transition: all 0.5s ease;
 }
@@ -85,21 +77,5 @@ export default {
   z-index: 10000; /* Ensure the button is above the sidebar */
   cursor: pointer;
   transition: left 0.5s ease;
-}
-
-@media (max-width: 768px) {
-  .sidebar-overlay {
-    width: 30%; /* Adjust width for smaller screens */
-  }
-
-  .circle {
-    top: 10px;
-  }
-}
-
-@media (max-width: 480px) {
-  .sidebar-overlay {
-    width: 40%; /* Adjust width for very small screens */
-  }
 }
 </style>
