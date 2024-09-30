@@ -1,31 +1,32 @@
 <template>
   <v-app>
+    <v-row>
+        <v-col> Breadcrumbs </v-col>
+      </v-row>
     <v-container fluid class="pa-0 fullWidthAndHeight">
+     
       <div class="d-flex fill-height">
-        <div class="fullWidthAndHeight">
           <location-map class="map-container" />
-        </div>
+        <SubSidebar class="sidebar-overlay" background="white">
+          <v-text-field
+            v-model="address"
+            label="Enter Address"
+            placeholder="Enter address"
+            @change="fetchCoordinates"
+          />
+        </SubSidebar>
       </div>
     </v-container>
 
     <!-- Sidebar overlay with address input -->
-    <SubSidebar class="sidebar-overlay">
-      
-      <v-text-field
-        v-model="address"
-        label="Enter Address"
-        placeholder="Enter address"
-        @change="fetchCoordinates"
-      />
-    </SubSidebar>
   </v-app>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import axios from 'axios'; // Use Axios for API calls
+import { ref } from "vue";
+import axios from "axios"; // Use Axios for API calls
 
-const address = ref(''); // Store the entered address
+const address = ref(""); // Store the entered address
 const sidebarOpen = ref(true); // Track sidebar visibility
 
 const fetchCoordinates = async () => {
@@ -37,7 +38,7 @@ const fetchCoordinates = async () => {
       const { lat, lon } = response.data[0];
       redirectToLocation(lat, lon);
     } else {
-      alert('Address not found');
+      alert("Address not found");
     }
   } catch (error) {
     console.error("Error fetching coordinates:", error);
@@ -45,7 +46,7 @@ const fetchCoordinates = async () => {
 };
 
 const redirectToLocation = (lat, lon) => {
-  document.dispatchEvent(new CustomEvent('move-map', { detail: { lat, lon } }));
+  document.dispatchEvent(new CustomEvent("move-map", { detail: { lat, lon } }));
 };
 </script>
 
@@ -54,7 +55,6 @@ const redirectToLocation = (lat, lon) => {
   width: 100%;
   height: 100%;
 }
-
 .fill-height {
   height: 100vh;
   width: 100%;
