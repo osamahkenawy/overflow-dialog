@@ -89,7 +89,7 @@ onMounted(() => {
 <style scoped>
 .full-map {
   width: 100%;
-  height: 100vh; /* Full height for the map */
+  height: 100%; /* Full height for the map */
   margin: 0;
   padding: 0;
 }
