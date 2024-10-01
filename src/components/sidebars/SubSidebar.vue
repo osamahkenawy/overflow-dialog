@@ -1,86 +1,64 @@
 <template>
-  <div class="sidepanel" :style="{marginLeft: panelMargin, backgroundColor: 'rgb(var(--v-theme-primary)) !important' }">
-    <!-- Slot for passing content from parent -->
+  <v-navigation-drawer
+    v-model="visible"
+    app
+    width="400"
+    right
+    temporary
+    class="sidebar-overlay"
+  >
+    <!-- Slot for passing the content of the sidebar -->
     <slot></slot>
-    <div class="circle" @click="togglePanel">
-      <v-btn elevation="2" color="secondary" icon fab dark small bottom left>
-        <v-icon medium v-if="!isCollapsed">mdi-chevron-left</v-icon>
-        <v-icon medium v-if="isCollapsed">mdi-chevron-right</v-icon>
+
+    <!-- Toggle Sidebar Button -->
+    <div class="circle" @click="toggleSidebar">
+      <v-btn elevation="2" color="secondary" icon fab dark small>
+        <v-icon v-if="visible">mdi-chevron-left</v-icon>
+        <v-icon v-else>mdi-chevron-right</v-icon>
       </v-btn>
     </div>
-  </div>
+  </v-navigation-drawer>
 </template>
 
 <script>
-import { ref, onMounted } from 'vue';
+import { ref } from 'vue';
 
 export default {
   name: 'SubSidebar',
-  setup() {
-    const isCollapsed = ref(false);
-    const panelMargin = ref('0px');
+  props: {
+    modelValue: {
+      type: Boolean,
+      required: true,
+    },
+  },
+  emits: ['update:modelValue'],
+  setup(props, { emit }) {
+    const visible = ref(props.modelValue);
 
-    // Function to toggle panel collapse/expand
-    const togglePanel = () => {
-      if (isCollapsed.value) {
-        panelMargin.value = '0px'; // Expand the panel
-      } else {
-        panelMargin.value = `-${getPanelWidth()}px`; // Collapse the panel
-      }
-      isCollapsed.value = !isCollapsed.value;
+    const toggleSidebar = () => {
+      visible.value = !visible.value;
+      emit('update:modelValue', visible.value);
     };
-
-    // Function to get the panel width dynamically
-    const getPanelWidth = () => {
-      return document.querySelector('.sidepanel').offsetWidth;
-    };
-
-    // Use onMounted to ensure DOM is fully loaded before calculating width
-    onMounted(() => {
-      panelMargin.value = '0px'; // Start with an expanded sidebar
-    });
 
     return {
-      isCollapsed,
-      panelMargin,
-      togglePanel,
+      visible,
+      toggleSidebar,
     };
   },
 };
 </script>
 
-<style lang="scss" scoped>
-body {
-  margin: 0;
-  padding: 0;
-}
-
-.sidepanel {
-  position: relative;
+<style scoped>
+.sidebar-overlay {
+  position: absolute; /* Ensure the sidebar is positioned above the content */
+  top: 0;
+  right: 0;
+  width: 400px; /* Adjust the sidebar width as needed */
   height: 100vh;
-  background-color: var(--v-theme-primary); /* Use Vuetify primary color */
-  width: 20%;
-  min-width: 100px;
-  margin-left: 0;
-  z-index: 2;
-  font-size: 1.5em;
-  line-height: 1.5em;
-  color: #333;
-  font-family: Helvetica;
-  text-align: center;
+  z-index: 9999; /* Ensure it stays above the map and other content */
+  background-color: rgba(255, 255, 255); /* Optional background */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3); /* Optional shadow for better visibility */
   transition: all 0.5s ease;
-}
-
-@media (max-width: 768px) {
-  .sidepanel {
-    width: 30%;
-  }
-}
-
-@media (max-width: 480px) {
-  .sidepanel {
-    width: 40%;
-  }
 }
 
 .circle {
@@ -96,18 +74,8 @@ body {
   align-items: center;
   top: calc(50% - 22px);
   left: calc(100% - 22px);
-  z-index: 3;
+  z-index: 10000; /* Ensure the button is above the sidebar */
   cursor: pointer;
   transition: left 0.5s ease;
-}
-
-@media (max-width: 768px) {
-  .circle {
-    top: 10px;
-  }
-}
-
-.hide {
-  display: none;
 }
 </style>

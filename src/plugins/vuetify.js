@@ -7,13 +7,16 @@ import { aliases, mdi } from 'vuetify/iconsets/mdi'; // Import MDI icon set
 const customTheme = {
   dark: false, // Optional: choose light or dark mode
   colors: {
-    primary: '#244066', // Define primary color
+    primary: '#244066', // primary color
     secondary: '#F2421B',
-    customColor1: '#E91E63', // Optional custom color
-    customColor2: '#9C27B0', // Optional custom color
+    third: '#F3F8FF', // third custom color
+    white: '#FFFF'
   },
   variables: {
-    primary: '#244066'
+    primary: '#244066',
+    secondary: '#F2421B',
+    third: '#F3F8FF', // third custom color
+     white: '#FFFF'
   },
   
 
