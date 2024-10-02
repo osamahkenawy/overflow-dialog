@@ -16,7 +16,14 @@
             placeholder="Enter address"
             @change="fetchCoordinates"
           />
-          <vehicle-information :active="active" :no-upper-divider="noUpperDivider" />
+          <div  style="margin: 20px !important;">
+            <uae-plate 
+             :plateColor="'#99644C'"
+             :plateNumber="'AD-10-7489'"
+             :flate="true" 
+            />
+          </div>
+
         </SubSidebar>
       </div>
     </v-container>

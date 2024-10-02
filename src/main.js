@@ -1,6 +1,6 @@
 import { createApp } from 'vue';
 import App from './App.vue';
-import vuetify from './plugins/vuetify'; // Import your Vuetify setup
+import vuetify from './plugins/vuetify';
 
 // Router
 import router from './router';
@@ -14,6 +14,7 @@ import messages from './locales';
 // Components
 import SubSidebar from './components/sidebars/SubSidebar.vue';
 import LocationMap from './components/maps/LocationMap.vue';
+import UaePlate from '@/components/plates/UaePlate.vue';
 
 // Styles
 import "@mdi/font/css/materialdesignicons.css";  // Material Design CSS For (Icons)
@@ -21,10 +22,10 @@ import 'leaflet/dist/leaflet.css';  // Leaflet CSS
 
 // Set up Vue I18n
 const i18n = createI18n({
-  legacy: false, // Disable legacy mode to use the Composition API
-  locale: 'en', // Default locale
-  fallbackLocale: 'en', // Fallback locale in case the requested one is not available
-  messages, // Locale messages imported from locales/index.js
+  legacy: false,
+  locale: 'en',
+  fallbackLocale: 'en',
+  messages,
 });
 
 const app = createApp(App);
@@ -38,9 +39,11 @@ app.use(vuetify);
 // Use I18n
 app.use(i18n);
 
+
 // Globally register components
 app.component('SubSidebar', SubSidebar);
 app.component('location-map', LocationMap);
+app.component('uae-plate', UaePlate);
 
 // Mount the app
 app.mount('#app');
