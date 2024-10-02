@@ -12,7 +12,7 @@
 
     <!-- Toggle Sidebar Button -->
     <div class="circle" @click="toggleSidebar">
-      <v-btn elevation="2" color="secondary" icon fab dark small>
+      <v-btn elevation="2" color="primary" icon fab dark small>
         <v-icon v-if="visible">mdi-chevron-left</v-icon>
         <v-icon v-else>mdi-chevron-right</v-icon>
       </v-btn>

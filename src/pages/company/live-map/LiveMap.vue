@@ -20,10 +20,16 @@
             <uae-plate 
              :plateColor="'#99644C'"
              :plateNumber="'AD-10-7489'"
-             :flate="true" 
+             :flate="true"  
             />
           </div>
-
+          <chip
+                 style="margin: 20px !important;"
+                      :content="`${'AED'} ${101}`"
+                      :textColor="'#175CD3'"
+                      :borderColor="'#B2DDFF'"
+                      :headerBackgroundColor="'#EFF8FF'"
+                    />
         </SubSidebar>
       </div>
     </v-container>

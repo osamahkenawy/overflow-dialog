@@ -68,15 +68,12 @@
     user-select: none;
     min-width: 4rem;
     max-width: 5rem;
-    border-radius: 0.25rem;
+    border-radius: 0.3rem;
     overflow: hidden;
     border: 1px solid currentColor;
     position: relative;
     background: currentColor;
   
-    &.elevation-1 {
-      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Custom elevation effect */
-    }
   
     .plate-number--top {
       > * {
@@ -99,6 +96,7 @@
     align-items: flex-end;
     justify-content: space-between;
     flex-wrap: nowrap;
+    margin: 0px 2px 0px 2px;
   }
   
   .center-text {
