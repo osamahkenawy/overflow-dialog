@@ -3,7 +3,7 @@
 ## Overview
 
 This repository contains two Vue.js components: `Home.vue` and `OverflowDialog.vue`.
-
+![Overflow Dialog Example](./overflowExample.png)
 - **Home.vue**: A component that provides a sample implementation of the `OverflowDialog` component.
 - **FleetOverflowDialog.vue**: A reusable dialog component with configurable content, title, and action buttons. The dialog is designed to be used for a variety of modal use cases.
 
