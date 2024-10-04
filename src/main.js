@@ -11,12 +11,6 @@ import { createI18n } from 'vue-i18n';
 // Import messages from the locales/index.js file
 import messages from './locales';
 
-// Components
-import SubSidebar from './components/sidebars/SubSidebar.vue';
-import LocationMap from './components/maps/LocationMap.vue';
-import UaePlate from '@/components/plates/UaePlate.vue';
-import Chip from '@/components/ui/Chip.vue';
-
 import OverflowDialog from '@/components/dialogs/OverflowDialog.vue';
 // Styles
 import "@mdi/font/css/materialdesignicons.css";  // Material Design CSS For (Icons)
@@ -42,16 +36,9 @@ app.use(vuetify);
 app.use(i18n);
 
 
-// Globally register components
-app.component('SubSidebar', SubSidebar);
-app.component('location-map', LocationMap);
-app.component('uae-plate', UaePlate);
-
 //Dialog
 app.component('overflow-dialog', OverflowDialog)
 
-// UI
-app.component('chip', Chip);  // chip
 
 
 
