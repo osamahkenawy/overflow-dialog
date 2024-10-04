@@ -23,11 +23,9 @@
              :flate="true"  
             />
           </div>
-          <chip
-                 style="margin: 20px !important;"
-                      :content="`${'AED'} ${101}`"
+          <chip  style="margin: 20px !important;" :content="`${'AED'} ${101}`"
                       :textColor="'#175CD3'"
-                      :borderColor="'#B2DDFF'"
+                      :borderColor="'#007BFF'"
                       :headerBackgroundColor="'#EFF8FF'"
                     />
         </SubSidebar>
@@ -40,6 +38,7 @@
 import { ref, onMounted } from 'vue';
 import axios from 'axios'; // Use Axios for API calls
 import { useI18n } from 'vue-i18n';
+
 
 const { t } = useI18n();
 

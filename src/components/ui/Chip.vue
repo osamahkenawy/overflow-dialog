@@ -1,19 +1,26 @@
 <template>
-  <v-chip small outlined :color="headerBackgroundColor" class="custom-chip">
-    <span class="custom-chip-content" :style="{ color: textColor }">
-      <v-sheet
-        v-if="showShip"
-        :height="7"
-        :width="7"
-        class="custom-chip-icon"
-        border
-        :color="textColor"
-        rounded
-      ></v-sheet>
-      <span class="custom-chip-text">{{ content }}</span>
-    </span>
-  </v-chip>
+    <v-chip 
+        small
+        outlined
+        :color="headerBackgroundColor"
+        :style="{ borderColor: borderColor }"
+        class="custom-chip"
+    >
+        <span class="custom-chip-content" :style="{ color: textColor }">
+        <v-sheet
+            v-if="showShip"
+            :height="7"
+            :width="7"
+            class="custom-chip-icon"
+            border
+            :color="textColor"
+            rounded
+        ></v-sheet>
+        <span class="custom-chip-text">{{ content }}</span>
+        </span>
+    </v-chip>
 </template>
+  
 <script setup>
 import { defineProps } from "vue";
 
@@ -52,7 +59,6 @@ const props = defineProps({
   border-radius: 15px;
   border-width: 1px;
   border-style: solid;
-  border-color: var(--border-color);
 }
 
 .custom-chip-content {
